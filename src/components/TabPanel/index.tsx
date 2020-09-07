@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 // import { colors } from '../shared/colors';
 
 export default function TabPanel(props: any) {
@@ -11,11 +11,7 @@ export default function TabPanel(props: any) {
 			hidden={page !== index}
 			id={`scrollable-force-tabpanel-${index}`}
 			aria-labelledby={`scrollable-force-tab-${index}`}>
-			{page === index && (
-				<Box p={3}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
+			{page === index && <Box p={3}>{children}</Box>}
 		</div>
 	);
 }
