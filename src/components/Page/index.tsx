@@ -1,19 +1,20 @@
 import React from 'react';
 // import { Box, Typography } from '@material-ui/core';
 // import { colors } from '../shared/colors';
+import { Actions, Enemies, Items, Locations, NPCs } from './pages';
 
 const choosePage = (content: string) => {
 	switch (content) {
 		case 'addActions':
-			return 'actions';
+			return <Page.Actions />;
 		case 'addLocation':
-			return 'locations';
+			return <Page.Locations />;
 		case 'addItem':
-			return 'item';
+			return <Page.Items />;
 		case 'addEnemy':
-			return 'enemy';
+			return <Page.Enemies />;
 		case 'addNPC':
-			return 'npc';
+			return <Page.NPCs />;
 		default:
 			return 'home';
 	}
@@ -24,3 +25,9 @@ export default function Page(props: any) {
 
 	return <div>{choosePage(content)}</div>;
 }
+
+Page.Actions = Actions;
+Page.Locations = Locations;
+Page.Items = Items;
+Page.Enemies = Enemies;
+Page.NPCs = NPCs;
