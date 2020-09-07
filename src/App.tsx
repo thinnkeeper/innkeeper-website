@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Container } from '@material-ui/core';
+import Nav from './Nav';
 
-const StyledApp = styled.div``;
-
-function App() {
-	return <StyledApp>dupa</StyledApp>;
+export default function App() {
+	return (
+		<Container maxWidth="lg" style={{ backgroundColor: '#3B6064' }}>
+			<Nav />
+		</Container>
+	);
 }
-
-export default App;
