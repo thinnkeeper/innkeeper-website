@@ -25,10 +25,6 @@ const Form = styled.form`
 
 export default function Items(props: any) {
 	const handleData = (event: any) => {
-		console.log(name);
-		console.log(description);
-		console.log(type);
-		console.log(tier);
 		event.preventDefault();
 	};
 
@@ -36,6 +32,32 @@ export default function Items(props: any) {
 	const [description, setDescription] = useState('');
 	const [type, setType] = useState('consumable');
 	const [tier, setTier] = useState('common');
+	// const [edit, setEdit] = useState(false);
+	const [items, setItems] = useState([] as any);
+
+	const addItem = () => {
+		if (name.length > 0 && description.length > 0) {
+			setItems([
+				...items,
+				{
+					name,
+					description,
+					type,
+					tier,
+				},
+			]);
+			clearEverything();
+		} else {
+			alert('Not all required fields are filled!');
+		}
+	};
+
+	const clearEverything = () => {
+		setName('');
+		setDescription('');
+		setType('consumable');
+		setTier('common');
+	};
 
 	return (
 		<>
@@ -70,7 +92,7 @@ export default function Items(props: any) {
 									value={description}
 									onChange={(event: any) => setDescription(event.target.value)}
 								/>
-								<InputLabel shrink id="demo-simple-select-placeholder-label-label">
+								<InputLabel shrink id="simple-select-placeholder-label-label">
 									Type
 								</InputLabel>
 								<Select
@@ -82,7 +104,7 @@ export default function Items(props: any) {
 									<MenuItem value={'consumable'}>consumable</MenuItem>
 									<MenuItem value={'notconsumable'}>not consumable</MenuItem>
 								</Select>
-								<InputLabel shrink id="demo-simple-select-placeholder-label-label">
+								<InputLabel shrink id="simple-select-placeholder-label-label">
 									Tier
 								</InputLabel>
 								<Select
@@ -109,14 +131,14 @@ export default function Items(props: any) {
 										Upload item icon
 									</Button>
 								</label>
-								<Button variant="contained" color="secondary" type="submit">
+								<Button variant="contained" color="secondary" onClick={addItem}>
 									Add item
 								</Button>
 							</Form>
 						</CardContent>
 					</Card>
 				</Grid>
-				<List type="items" />
+				<List type="items" items={items} />
 			</Grid>
 		</>
 	);

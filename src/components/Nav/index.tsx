@@ -13,7 +13,7 @@ import TabPanel from '../TabPanel';
 import Page from '../Page';
 
 export default function Nav() {
-	const [value, setValue] = React.useState(2);
+	const [value, setValue] = React.useState(0);
 
 	const handleChange = (event: any, newValue: any) => {
 		setValue(newValue);

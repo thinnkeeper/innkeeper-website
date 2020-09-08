@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Grid,
 	Card,
@@ -8,8 +8,8 @@ import {
 	TextField,
 } from '@material-ui/core';
 import styled from 'styled-components';
-import List from '../../List';
 import { colors } from '../../../shared/colors';
+import List from '../../List';
 
 const Form = styled.form`
 	display: flex;
@@ -22,9 +22,33 @@ const Form = styled.form`
 
 export default function Actions(props: any) {
 	const handleData = (event: any) => {
-		console.log(event);
 		event.preventDefault();
 	};
+
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
+	// const [edit, setEdit] = useState(false);
+	const [actions, setActions] = useState([] as any);
+
+	const addAction = () => {
+		if (name.length > 0 && description.length > 0) {
+			setActions([
+				...actions,
+				{
+					name,
+					description,
+				},
+			]);
+			clearEverything();
+		} else {
+			alert('Not all required fields are filled!');
+		}
+	};
+	const clearEverything = () => {
+		setName('');
+		setDescription('');
+	};
+
 	return (
 		<>
 			<Grid container spacing={3}>
@@ -45,6 +69,8 @@ export default function Actions(props: any) {
 									variant="filled"
 									required
 									size="small"
+									value={name}
+									onChange={(event: any) => setName(event.target.value)}
 								/>
 								<TextField
 									id="filled-size-small"
@@ -53,20 +79,29 @@ export default function Actions(props: any) {
 									required
 									size="small"
 									multiline
+									value={description}
+									onChange={(event: any) => setDescription(event.target.value)}
+								/>
+								<input
+									accept="image/*"
+									id="contained-button-file"
+									multiple
+									type="file"
+									style={{ display: 'none' }}
 								/>
 								<label htmlFor="contained-button-file">
 									<Button variant="contained" color="primary" component="span">
 										Upload action icon
 									</Button>
 								</label>
-								<Button variant="contained" color="secondary" type="submit">
+								<Button variant="contained" color="secondary" onClick={addAction}>
 									Add action
 								</Button>
 							</Form>
 						</CardContent>
 					</Card>
 				</Grid>
-				<List type="actions" />
+				<List type="actions" items={actions} />
 			</Grid>
 		</>
 	);
