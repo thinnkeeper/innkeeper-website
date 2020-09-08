@@ -5,12 +5,10 @@ import {
 	CardContent,
 	Typography,
 	Button,
-	Select,
-	MenuItem,
-	InputLabel,
 	TextField,
 } from '@material-ui/core';
 import styled from 'styled-components';
+import List from '../../List';
 import { colors } from '../../../shared/colors';
 
 const Form = styled.form`
@@ -27,6 +25,7 @@ export default function Locations(props: any) {
 		console.log(event);
 		event.preventDefault();
 	};
+
 	return (
 		<>
 			<Grid container spacing={3}>
@@ -58,27 +57,13 @@ export default function Locations(props: any) {
 								/>
 								<TextField
 									id="standard-number"
-									label="HP"
+									label="Level"
 									type="number"
 									variant="filled"
 									InputLabelProps={{
 										shrink: true,
 									}}
 								/>
-								<InputLabel shrink id="demo-simple-select-placeholder-label-label">
-									Tier
-								</InputLabel>
-								<Select
-									labelId="simple-select-label"
-									id="simple-select"
-									variant="filled"
-									value={1}>
-									<MenuItem value={1}>common</MenuItem>
-									<MenuItem value={2}>uncommon</MenuItem>
-									<MenuItem value={3}>rare</MenuItem>
-									<MenuItem value={4}>legendary</MenuItem>
-									<MenuItem value={5}>mythic</MenuItem>
-								</Select>
 								<input
 									accept="image/*"
 									id="contained-button-file"
@@ -98,19 +83,7 @@ export default function Locations(props: any) {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={6}>
-					<Card style={{ backgroundColor: colors.whiteish }}>
-						<CardContent>
-							<Typography
-								color="textSecondary"
-								variant="h6"
-								component="h6"
-								gutterBottom>
-								See available locations!
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
+				<List type="locations" />
 			</Grid>
 		</>
 	);

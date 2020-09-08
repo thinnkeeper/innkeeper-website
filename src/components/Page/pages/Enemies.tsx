@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import styled from 'styled-components';
 import { colors } from '../../../shared/colors';
+import List from '../../List';
 
 const Form = styled.form`
 	display: flex;
@@ -98,19 +99,7 @@ export default function Enemies(props: any) {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={6}>
-					<Card style={{ backgroundColor: colors.whiteish }}>
-						<CardContent>
-							<Typography
-								color="textSecondary"
-								variant="h6"
-								component="h6"
-								gutterBottom>
-								See available enemies!
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
+				<List type="enemies" />
 			</Grid>
 		</>
 	);

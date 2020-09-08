@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Grid,
 	Card,
@@ -11,6 +11,7 @@ import {
 	TextField,
 } from '@material-ui/core';
 import styled from 'styled-components';
+import List from '../../List';
 import { colors } from '../../../shared/colors';
 
 const Form = styled.form`
@@ -24,9 +25,18 @@ const Form = styled.form`
 
 export default function Items(props: any) {
 	const handleData = (event: any) => {
-		console.log(event);
+		console.log(name);
+		console.log(description);
+		console.log(type);
+		console.log(tier);
 		event.preventDefault();
 	};
+
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
+	const [type, setType] = useState('consumable');
+	const [tier, setTier] = useState('common');
+
 	return (
 		<>
 			<Grid container spacing={3}>
@@ -47,6 +57,8 @@ export default function Items(props: any) {
 									variant="filled"
 									required
 									size="small"
+									value={name}
+									onChange={(event: any) => setName(event.target.value)}
 								/>
 								<TextField
 									id="filled-size-small"
@@ -55,6 +67,8 @@ export default function Items(props: any) {
 									required
 									size="small"
 									multiline
+									value={description}
+									onChange={(event: any) => setDescription(event.target.value)}
 								/>
 								<InputLabel shrink id="demo-simple-select-placeholder-label-label">
 									Type
@@ -63,9 +77,10 @@ export default function Items(props: any) {
 									labelId="simple-select-label"
 									id="simple-select"
 									variant="filled"
-									value={1}>
-									<MenuItem value={1}>consumable</MenuItem>
-									<MenuItem value={2}>not consumable</MenuItem>
+									value={type}
+									onChange={(event: any) => setType(event.target.value)}>
+									<MenuItem value={'consumable'}>consumable</MenuItem>
+									<MenuItem value={'notconsumable'}>not consumable</MenuItem>
 								</Select>
 								<InputLabel shrink id="demo-simple-select-placeholder-label-label">
 									Tier
@@ -74,12 +89,13 @@ export default function Items(props: any) {
 									labelId="simple-select-label"
 									id="simple-select"
 									variant="filled"
-									value={1}>
-									<MenuItem value={1}>common</MenuItem>
-									<MenuItem value={2}>uncommon</MenuItem>
-									<MenuItem value={3}>rare</MenuItem>
-									<MenuItem value={4}>legendary</MenuItem>
-									<MenuItem value={5}>mythic</MenuItem>
+									value={tier}
+									onChange={(event: any) => setTier(event.target.value)}>
+									<MenuItem value={'common'}>common</MenuItem>
+									<MenuItem value={'uncommon'}>uncommon</MenuItem>
+									<MenuItem value={'rare'}>rare</MenuItem>
+									<MenuItem value={'legendary'}>legendary</MenuItem>
+									<MenuItem value={'mythic'}>mythic</MenuItem>
 								</Select>
 								<input
 									accept="image/*"
@@ -100,19 +116,7 @@ export default function Items(props: any) {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={6}>
-					<Card style={{ backgroundColor: colors.whiteish }}>
-						<CardContent>
-							<Typography
-								color="textSecondary"
-								variant="h6"
-								component="h6"
-								gutterBottom>
-								See available items!
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
+				<List type="items" />
 			</Grid>
 		</>
 	);

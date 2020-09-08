@@ -2,9 +2,9 @@ import React from 'react';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faHammer,
+	faRunning,
 	faCity,
-	faBomb,
+	faShieldAlt,
 	faBookDead,
 	faLaughBeam,
 } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import TabPanel from '../TabPanel';
 import Page from '../Page';
 
 export default function Nav() {
-	const [value, setValue] = React.useState(0);
+	const [value, setValue] = React.useState(2);
 
 	const handleChange = (event: any, newValue: any) => {
 		setValue(newValue);
@@ -34,9 +34,9 @@ export default function Nav() {
 						marginTop: '-10px',
 					}}
 					aria-label="scrollable force tabs example">
-					<Tab label="Add action" icon={<FontAwesomeIcon icon={faHammer} />} />
+					<Tab label="Add action" icon={<FontAwesomeIcon icon={faRunning} />} />
 					<Tab label="Add location" icon={<FontAwesomeIcon icon={faCity} />} />
-					<Tab label="Add item" icon={<FontAwesomeIcon icon={faBomb} />} />
+					<Tab label="Add item" icon={<FontAwesomeIcon icon={faShieldAlt} />} />
 					<Tab label="Add enemy" icon={<FontAwesomeIcon icon={faBookDead} />} />
 					<Tab label="Add NPC" icon={<FontAwesomeIcon icon={faLaughBeam} />} />
 				</Tabs>

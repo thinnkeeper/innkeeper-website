@@ -11,6 +11,7 @@ import {
 	TextField,
 } from '@material-ui/core';
 import styled from 'styled-components';
+import List from '../../List';
 import { colors } from '../../../shared/colors';
 
 const Form = styled.form`
@@ -98,19 +99,7 @@ export default function NPCs(props: any) {
 						</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={6}>
-					<Card style={{ backgroundColor: colors.whiteish }}>
-						<CardContent>
-							<Typography
-								color="textSecondary"
-								variant="h6"
-								component="h6"
-								gutterBottom>
-								See available NPCs!
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
+				<List type="NPCs" />
 			</Grid>
 		</>
 	);
